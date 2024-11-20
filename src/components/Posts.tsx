@@ -1,8 +1,8 @@
-import { useFetchPosts } from "../hooks/fetchPosts";
+import { usePosts } from "../hooks/usePosts";
 import PostType from "../types/Post.type";
 
 const Posts: React.FC = () => {
-  const { data, isFetching, error } = useFetchPosts();
+  const { data, isFetching, error } = usePosts();
 
   if (isFetching) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
