@@ -19,8 +19,11 @@ function App() {
   return (
     <div>
       <div>
-        <button onClick={() => handleViewChange(VIEWS.POSTS)}>Posts</button>
-        <button onClick={() => handleViewChange(VIEWS.TODOS)}>Todos</button>
+        <div>
+          <button onClick={() => handleViewChange(VIEWS.POSTS)}>Posts</button>
+          <button onClick={() => handleViewChange(VIEWS.TODOS)}>Todos</button>
+        </div>
+        <h1>{currentView}</h1>
       </div>
       <div>
         {currentView === VIEWS.POSTS && <Posts />}

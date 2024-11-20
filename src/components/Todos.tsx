@@ -1,21 +1,21 @@
 import { useFetchTodos } from "../hooks/fetchTodos";
 import TodoType from "../types/Todo.type";
 
-const Todos = () => {
-  const { data } = useFetchTodos();
-  const todos: TodoType[] = data ? data : [];
+const Todos: React.FC = () => {
+  const { data, isFetching, error } = useFetchTodos();
+
+  if (isFetching) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
+  if (data.length === 0) return <p>No data found</p>;
 
   return (
-    <div>
-      <h1>Todos</h1>
-      <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
-            {todo.title} - {todo.completed ? "Completed" : "Not Completed"}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {data.map((todo: TodoType) => (
+        <li key={todo.id}>
+          {todo.title} - {todo.completed ? "Completed" : "Not Completed"}
+        </li>
+      ))}
+    </ul>
   );
 };
 

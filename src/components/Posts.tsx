@@ -1,19 +1,19 @@
 import { useFetchPosts } from "../hooks/fetchPosts";
 import PostType from "../types/Post.type";
 
-const Posts = () => {
-  const { data } = useFetchPosts();
-  const posts: PostType[] = data ? data : [];
+const Posts: React.FC = () => {
+  const { data, isFetching, error } = useFetchPosts();
+
+  if (isFetching) return <p>Loading...</p>;
+  if (error) return <p>{error.message}</p>;
+  if (data.length === 0) return <p>No data found</p>;
 
   return (
-    <div>
-      <h1>Posts</h1>
-      <ul>
-        {posts.map((post: PostType) => (
-          <li key={post.id}>{post.title}</li>
-        ))}
-      </ul>
-    </div>
+    <ul>
+      {data.map((post: PostType) => (
+        <li key={post.id}>{post.title}</li>
+      ))}
+    </ul>
   );
 };
 
