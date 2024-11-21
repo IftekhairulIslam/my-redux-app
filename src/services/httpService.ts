@@ -7,30 +7,27 @@ const httpService = axios.create({
   },
 });
 
-// Add request interceptor
-httpService.interceptors.request.use(
-  (config) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
-// Add response interceptor
+// Handling unauthenticated responses
 httpService.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
-      // Handle unauthorized access
       localStorage.removeItem("token");
+      removeHeaderToken();
     }
     return Promise.reject(error);
   }
 );
 
+// Set header when logged in successful
+function setHeaderToken(token: string) {
+  httpService.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+}
+
+// Remove header when logged out
+function removeHeaderToken() {
+  delete httpService.defaults.headers.common["Authorization"];
+}
+
+export { removeHeaderToken, setHeaderToken };
 export default httpService;

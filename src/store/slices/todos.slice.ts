@@ -6,22 +6,27 @@ import {
 import todoService from "../../services/todoService";
 import TodoType from "../../types/Todo.type";
 import sliceName from "../sliceName.state";
+import { RootState } from "../store";
 
 interface TodosState {
+  isFetchingFirst: boolean;
   isFetching: boolean;
   data: TodoType[];
   error?: SerializedError | null;
 }
 
 const initialState: TodosState = {
+  isFetchingFirst: true,
   isFetching: false,
   data: [],
   error: null,
 };
 
-const getTodos = createAsyncThunk(sliceName.todos, async () =>
-  todoService.getTodos()
-);
+const getTodos = createAsyncThunk(sliceName.todos, async () => {
+  return todoService.getTodos();
+});
+
+const todosStates = (state: RootState) => state[sliceName.todos];
 
 const todosSlice = createSlice({
   name: sliceName.todos,
@@ -34,6 +39,7 @@ const todosSlice = createSlice({
       })
       .addCase(getTodos.fulfilled, (state, action) => {
         state.isFetching = false;
+        state.isFetchingFirst = false;
         state.data = action.payload.data;
       })
       .addCase(getTodos.rejected, (state, action) => {
@@ -43,5 +49,5 @@ const todosSlice = createSlice({
   },
 });
 
-export { getTodos };
+export { getTodos, todosStates };
 export default todosSlice.reducer;

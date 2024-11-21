@@ -6,14 +6,17 @@ import {
 import postService from "../../services/postService";
 import PostType from "../../types/Post.type";
 import sliceName from "../sliceName.state";
+import { RootState } from "../store";
 
 interface PostsState {
+  isFetchingFirst: boolean;
   isFetching: boolean;
   data: PostType[];
   error?: SerializedError | null;
 }
 
 const initialState: PostsState = {
+  isFetchingFirst: true,
   isFetching: false,
   data: [],
   error: null,
@@ -22,6 +25,8 @@ const initialState: PostsState = {
 const getPosts = createAsyncThunk(sliceName.posts, async () =>
   postService.getPosts()
 );
+
+const postsStates = (state: RootState) => state[sliceName.posts];
 
 const postsSlice = createSlice({
   name: sliceName.posts,
@@ -34,6 +39,7 @@ const postsSlice = createSlice({
       })
       .addCase(getPosts.fulfilled, (state, action) => {
         state.isFetching = false;
+        state.isFetchingFirst = false;
         state.data = action.payload.data;
       })
       .addCase(getPosts.rejected, (state, action) => {
@@ -43,5 +49,5 @@ const postsSlice = createSlice({
   },
 });
 
+export { getPosts, postsStates };
 export default postsSlice.reducer;
-export { getPosts };

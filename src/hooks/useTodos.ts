@@ -1,18 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import sliceName from "../store/sliceName.state";
-import { getTodos } from "../store/slices/todos.slice";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { getTodos, todosStates } from "../store/slices/todos.slice";
 
 const useTodos = () => {
-  const dispatch = useDispatch();
-  const { data, isFetching, error } = useSelector(
-    (state: unknown) => state[sliceName.todos]
-  );
+  const dispatch = useAppDispatch();
+  const { data, isFetching, error } = useAppSelector(todosStates);
 
   useEffect(() => {
     // Fetch data only when the data array is empty.
     if (data.length === 0) dispatch(getTodos());
-  }, [dispatch]);
+  }, [dispatch, data]);
 
   return { data, isFetching, error };
 };
