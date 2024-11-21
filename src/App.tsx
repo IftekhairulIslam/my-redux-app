@@ -27,7 +27,7 @@ function App() {
       </div>
       <div>
         {currentView === VIEWS.POSTS && <Posts />}
-        {/* {currentView === VIEWS.TODOS && <Todos />} */}
+        {currentView === VIEWS.TODOS && <Todos />}
       </div>
     </div>
   );

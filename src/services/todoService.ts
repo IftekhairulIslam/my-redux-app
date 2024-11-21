@@ -1,7 +1,7 @@
 import httpService from "./httpService";
 
 class TodoService {
-  getPosts() {
+  getTodos() {
     return httpService.get("/todos");
   }
 }

@@ -3,45 +3,45 @@ import {
   createSlice,
   SerializedError,
 } from "@reduxjs/toolkit";
-import postService from "../../services/postService";
-import PostType from "../../types/Post.type";
+import todoService from "../../services/todoService";
+import TodoType from "../../types/Todo.type";
 import sliceName from "../sliceName.state";
 
-interface PostsState {
+interface TodosState {
   isFetching: boolean;
-  data: PostType[];
+  data: TodoType[];
   error?: SerializedError | null;
 }
 
-const initialState: PostsState = {
+const initialState: TodosState = {
   isFetching: false,
   data: [],
   error: null,
 };
 
-const getPosts = createAsyncThunk(sliceName.posts, async () =>
-  postService.getPosts()
+const getTodos = createAsyncThunk(sliceName.todos, async () =>
+  todoService.getTodos()
 );
 
-const postsSlice = createSlice({
-  name: sliceName.posts,
+const todosSlice = createSlice({
+  name: sliceName.todos,
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getPosts.pending, (state) => {
+      .addCase(getTodos.pending, (state) => {
         state.isFetching = true;
       })
-      .addCase(getPosts.fulfilled, (state, action) => {
+      .addCase(getTodos.fulfilled, (state, action) => {
         state.isFetching = false;
         state.data = action.payload.data;
       })
-      .addCase(getPosts.rejected, (state, action) => {
+      .addCase(getTodos.rejected, (state, action) => {
         state.isFetching = false;
         state.error = action.error;
       });
   },
 });
 
-export default postsSlice.reducer;
-export { getPosts };
+export { getTodos };
+export default todosSlice.reducer;

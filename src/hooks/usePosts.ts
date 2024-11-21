@@ -10,8 +10,9 @@ const usePosts = () => {
   );
 
   useEffect(() => {
-    dispatch(getPosts());
-  }, [dispatch]);
+    // Fetch data only when the data array is empty.
+    if (data.length === 0) dispatch(getPosts());
+  }, [dispatch, data]);
 
   return { data, isFetching, error };
 };
