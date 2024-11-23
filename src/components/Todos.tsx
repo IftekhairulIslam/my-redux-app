@@ -1,8 +1,8 @@
-import { useFetchTodos } from "../hooks/fetchTodos";
+import { useTodos } from "../hooks/useTodos";
 import TodoType from "../types/Todo.type";
 
 const Todos: React.FC = () => {
-  const { data, isFetching, error } = useFetchTodos();
+  const { data, isFetching, error } = useTodos();
 
   if (isFetching) return <p>Loading...</p>;
   if (error) return <p>{error.message}</p>;
