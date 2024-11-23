@@ -4,7 +4,7 @@ This branch demonstrates only the mechanism for data fetching and caching.
 
 ## Used
 
-- `Axios`: used for data fetching
+- `Fetch API`: used for data fetching
 - `TanStack Query`: used for data caching
 
 ### Notes
