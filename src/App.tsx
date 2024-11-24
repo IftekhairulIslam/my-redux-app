@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
-import Posts from "./components/Posts";
-import Todos from "./components/Todos";
+import PostsIndex from "./components/Posts";
+import TodosIndex from "./components/Todos";
 
 enum VIEWS {
   POSTS = "POSTS",
@@ -26,8 +26,8 @@ function App() {
         <h1>{currentView}</h1>
       </div>
       <div>
-        {currentView === VIEWS.POSTS && <Posts />}
-        {currentView === VIEWS.TODOS && <Todos />}
+        {currentView === VIEWS.POSTS && <PostsIndex />}
+        {currentView === VIEWS.TODOS && <TodosIndex />}
       </div>
     </div>
   );

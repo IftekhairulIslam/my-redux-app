@@ -1,5 +1,5 @@
-import { usePosts } from "../hooks/usePosts";
-import PostType from "../types/Post.type";
+import { usePosts } from "../../hooks/usePosts";
+import PostType from "../../types/Post.type";
 
 const Posts: React.FC = () => {
   const { data, isFetching, error } = usePosts();

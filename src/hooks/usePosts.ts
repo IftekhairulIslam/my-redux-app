@@ -4,11 +4,11 @@ import { useAppSelector } from "../store/hooks";
 import { selectPostFilters } from "../store/slices/postFilters.slice";
 
 export const usePosts = () => {
-  const postFilters = useAppSelector(selectPostFilters);
+  const filters = useAppSelector(selectPostFilters);
 
   return useQuery({
-    queryKey: ["posts"],
-    queryFn: () => postService.getPosts(postFilters),
+    queryKey: ["posts", filters],
+    queryFn: () => postService.getPosts(filters),
     select: (response) => response?.data,
     //staleTime: 0, // Disable cache
     //retry: false, // Disable try

@@ -4,11 +4,11 @@ import { useAppSelector } from "../store/hooks";
 import { selectTodoFilters } from "../store/slices/todoFilters.slice";
 
 export const useTodos = () => {
-  const todoFilters = useAppSelector(selectTodoFilters);
+  const filters = useAppSelector(selectTodoFilters);
 
   return useQuery({
-    queryKey: ["todos"],
-    queryFn: () => todoService.getTodos(todoFilters),
+    queryKey: ["todos", filters],
+    queryFn: () => todoService.getTodos(filters),
     select: (response) => response.data,
     //staleTime: 0, // Disable cache
     //retry: false, // Disable try

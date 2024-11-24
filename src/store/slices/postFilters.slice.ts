@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import sliceName from "../sliceName.state";
 import { RootState } from "../store";
 
@@ -16,10 +16,10 @@ const postFiltersSlice = createSlice({
   name: sliceName.postFilters,
   initialState,
   reducers: {
-    setLimit: (state, action) => {
+    setLimit: (state, action: PayloadAction<number>) => {
       state.limit = action.payload;
     },
-    setPage: (state, action) => {
+    setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
   },

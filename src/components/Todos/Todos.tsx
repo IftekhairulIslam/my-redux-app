@@ -1,5 +1,5 @@
-import { useTodos } from "../hooks/useTodos";
-import TodoType from "../types/Todo.type";
+import { useTodos } from "../../hooks/useTodos";
+import TodoType from "../../types/Todo.type";
 
 const Todos: React.FC = () => {
   const { data, isFetching, error } = useTodos();
