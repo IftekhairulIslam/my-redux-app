@@ -1,6 +1,6 @@
 # React Application: Data Fetching, Caching and State Management
 
-This branch demonstrate the hybrid approach for data fetching, caching and state management using axios, tanstack and redux.
+This branch demonstrates the hybrid approach for data fetching, caching and state management using axios, tanstack and redux.
 
 ## Used
 
@@ -12,7 +12,7 @@ This branch demonstrate the hybrid approach for data fetching, caching and state
 
 ## Branches
 
-- `main`: Current branch
+- `main`: Data fetching with Axios, data caching with Tanstack Query and state management with Redux
 - [`tanstack-and-fetch`](https://github.com/IftekhairulIslam/react-data-fetching-caching/tree/tanstack-and-fetch): Data fetching with Fetch API and caching with Tanstack Query
 - [`tanstack-and-axios`](https://github.com/IftekhairulIslam/react-data-fetching-caching/tree/tanstack-and-axios): Data fetching with Axios and caching with Tanstack Query
 - [`redux-and-axios`](https://github.com/IftekhairulIslam/react-data-fetching-caching/tree/redux-and-axios): Data fetching with Axios and caching with Redux
